@@ -10,7 +10,4 @@ class ResCompany(models.Model):
     @api.model
     def create(self, vals):
         self = self.with_context(creating_from_company=True)
-        company = super(ResCompany, self).create(vals)
-        # Add partner's company_id to new company
-        company.partner_id.sudo().write({"company_id": company.id})
-        return company
+        return super().create(vals)
